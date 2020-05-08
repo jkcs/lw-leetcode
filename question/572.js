@@ -38,7 +38,9 @@
 
 /**
  * 先 中 后
- * 思路1 先序遍历 s ,与 t 的根比较，找到根，再找子也相同的
+ * 思路1 用时 74.71% 内存 100%  平均 100 零几秒 内存 38 左右
+ *      先序遍历 s ,与 t 的根比较，找到根，再找子也相同的
+ * 思路2
  */
 // 伪实现
 function TreeNode(val, left, right) {
@@ -62,28 +64,23 @@ function TreeNode(val, left, right) {
  * @return {boolean}
  */
 var isSubtree = function (s, t) {
-    // 先序遍历
-    return deepEachTree(s, t)
+    if (!s) return false
+    return isSameNode(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t)
 };
 
-function deepEachTree(tree, targetStree) {
-    console.log(tree, targetStree,'-------------------');
-    
-    if (!tree || !targetStree) return false
-    return tree.val == targetStree.val && deepEachTree(tree.left, targetStree.left) && deepEachTree(tree.right, targetStree.right)
-    if (tree.val == targetStree.val && deepEachTree(tree.left, targetStree.left) && deepEachTree(tree.right, targetStree.right)) {
+function isSameNode(tree, targetStree) {    
+    if (tree === targetStree) {
         return true
-    } else {
-        if (tree.left) {
-            return tree.left.val == targetStree.val && deepEachTree(tree.left, targetStree) && deepEachTree(tree.left, targetStree)
-        }
-        if (tree.right) {
-            return tree.right.val == targetStree.val && deepEachTree(tree.right, targetStree) && deepEachTree(tree.right, targetStree)
-        }
-        return false
     }
+    return tree && targetStree && tree.val === targetStree.val && isSameNode(tree.left, targetStree.left) && isSameNode(tree.right, targetStree.right)
 }
 
 // 示例1
-let isSub = isSubtree(new TreeNode(3, new TreeNode(4, new TreeNode(1), new TreeNode(2)), new TreeNode(5)), new TreeNode(4, new TreeNode(1), new TreeNode(2)))
+let isSub = isSubtree(new TreeNode(3, new TreeNode(4, new TreeNode(2), new TreeNode(2)), new TreeNode(5)), new TreeNode(4, new TreeNode(1), new TreeNode(2)))
 console.log(isSub);
+// 测试用例2
+let isSub2 = isSubtree(new TreeNode(4, new TreeNode(1), new TreeNode(2)), new TreeNode(4, new TreeNode(1), new TreeNode(2)))
+console.log(isSub2);
+// 测试用例3
+let isSub3 = isSubtree(new TreeNode(1), new TreeNode(0))
+console.log(isSub3);
