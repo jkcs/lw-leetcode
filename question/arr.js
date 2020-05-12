@@ -34,5 +34,6 @@ function bubbleSort(array) {
     return result
 }
 
-console.log(sort([1, 6, 5, 5, 4, 9]));
-console.log(bubbleSort([1, 6, 5, 5, 4, 9]));
+
+// console.log(sort([1, 6, 5, 5, 4, 9]));
+// console.log(bubbleSort([1, 6, 5, 5, 4, 9]));
