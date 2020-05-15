@@ -16,9 +16,19 @@
  * 输出: 4
  */
 /**
+ * 以前遇到过
+ *  异或 同个数为 0
+ */
+/**
  * @param {number[]} nums
  * @return {number}
  */
-var singleNumber = function(nums) {
-
+var singleNumber = function (nums) {
+    let n = nums[0]
+    for (let i = 1; i < nums.length; i++) {
+        n = n ^ nums[i]
+    }
+    return n
 };
+
+console.log(singleNumber([4,1,2,1,2]));
