@@ -10,6 +10,32 @@ let used = [[]]
 function bfs() {
     // 思考：找树的某个节点
     // 1. 递归往下寻找，找过的和无意义的 直接返回, 找过后 标记 找过, 找到底就回溯，回溯到顶层还没找到 直接返回没找到
+
+  // bfs 类型题目 443 127
+  // bfs 1 不需要确定当前遍历到了哪一层
+
+  // while queue 不空：
+  //   cur = queue.pop()
+  // if cur 有效且未被访问过：
+  //       进行处理
+  // for 节点 in cur 的所有相邻节点：
+  //       if 该节点有效：
+  // queue.push(该节点)
+
+  // bfs 2 如果要确定当前遍历到了哪一层
+
+  // level = 0
+  // while queue 不空：
+  //   size = queue.size()
+  // while (size --) {
+  //   cur = queue.pop()
+  //   if cur 有效且未被访问过：
+  //           进行处理
+  //   for 节点 in cur的所有相邻节点：
+  //   if 该节点有效：
+  //   queue.push(该节点)
+  // }
+  // level ++;
 }
 
 // 广度优先
